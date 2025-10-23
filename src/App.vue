@@ -41,12 +41,20 @@ export default {
       }
     },
 
-    add_Todo(newTodoText) {
-      this.todos.push({
-        id: Date.now(), // 현재시간(밀리터리 초 단위) -> 절대 중복되지 않는 값
-        content: newTodoText,
-      });
+    async add_Todo(newTodoText) {
+      try {
+        const res = await api.post("/todos", { content: newTodoText });
+        this.todos.push(res.data);
+      } catch (err) {
+        console.error("할일 추가 실패", err);
+      }
     },
+
+    //   this.todos.push({
+    //   id: Date.now(), // 현재시간(밀리터리 초 단위) -> 절대 중복되지 않는 값
+    //   content: newTodoText,
+    // });
+
     todoDelete(id) {
       // id-> TodoList에서 넘어온 todo.id (삭제할 할일의 id)
       this.todos = this.todos.filter((todo) => todo.id !== id);
