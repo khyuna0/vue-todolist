@@ -55,10 +55,13 @@ export default {
     //   content: newTodoText,
     // });
 
-    todoDelete(id) {
-      // id-> TodoList에서 넘어온 todo.id (삭제할 할일의 id)
-      this.todos = this.todos.filter((todo) => todo.id !== id);
-      // 조건에 맞지 않는 요소들만 남김
+    async todoDelete(id) {
+      try {
+        await api.delete(`/todos/${id}`); // id-> TodoList에서 넘어온 todo.id (삭제할 할일의 id)
+        this.todos = this.todos.filter((todo) => todo.id !== id); // 조건에 맞지 않는 요소들만 남김
+      } catch (err) {
+        console.error("할 일 삭제 실패", err);
+      }
     },
   },
 };
