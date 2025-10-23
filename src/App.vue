@@ -43,8 +43,13 @@ export default {
   max-width: 400px;
   text-align: center;
   margin: 50px auto;
-  border: 1px solid #eeeeee;
-  border-radius: 40px;
-  background-color: #ddd;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #faf9f9;
+  padding: 10px;
+}
+
+#app h1 {
+  color: cadetblue;
 }
 </style>
